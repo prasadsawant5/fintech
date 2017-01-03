@@ -1,0 +1,35 @@
+<app-header></app-header>
+<div class="loading" *ngIf="loading"></div>
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Personal Details</h2>
+
+        <h4>Member ID: <strong>{{ memberId }}</strong></h4>
+        <p>Name: <strong>{{ firstName }} {{ middleName }} {{ lastName }}</strong></p>
+        <p>PAN NO: <strong>{{ panNo }}</strong></p>
+        <p>AADHAR NO: <strong>{{ aadharNo }}</strong></p>
+        <p>Mobile: <strong>{{ mobile }}</strong></p>
+        <p>Email: <strong>{{ email }}</strong></p>
+        <p>Gender: <strong>{{ gender }}</strong></p>
+        <p>Date of Birth: <strong>{{ dob }}</strong></p>
+        <p>Residential Address: <strong>{{ address }}</strong></p>
+        <br /><hr /><br />
+
+        <h2>Nominee Details</h2>
+
+        <p>Nominee's Name: <strong>{{ nomineeFirstName }} {{ nomineeMiddleName }} {{ nomineeLastName }}</strong></p>
+        <p>Nominee's Age: <strong>{{ nomineeAge }}</strong></p>
+        <p>Nominee's Relation: <strong>{{ nomineeRelation }}</strong></p>
+
+        <br /><hr /><br />
+
+        <h2>Employment or Business Details</h2>
+
+        <p>Company: <strong>{{ company }}</strong></p>
+        <p>Designation: <strong>{{ designation }}</strong></p>
+        <p>Department: <strong>{{ department }}</strong></p>
+        <p>Office Address: <strong>{{ officeAddress }}</strong></p>
+
+    </div>
+</div>

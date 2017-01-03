@@ -1,0 +1,61 @@
+<app-header></app-header>
+<div class="loading" *ngIf="loading"></div>
+
+<div class="row col-md-6 col-md-offset-3">
+    <form (ngSubmit)="onSave(newPlanForm)" #newPlanForm="ngForm">
+        <h2>Add New Plan</h2>
+
+        <div class="form-group">
+            <label for="sel1">Scheme:</label>
+            <select class="form-control" id="sel1" name="schemeName" ngModel (change)="onChange($event.target.value)" [disabled]="loading">
+                <option value="" selected="true">Select a Scheme</option>
+                <option *ngFor="let scheme of schemes; trackBy: trackScheme" [value]="scheme.ledgerName">{{ scheme.ledgerName }}</option>
+            </select>
+        </div>
+
+        <div [hidden]="interestFlag">
+            <div class="panel panel-default">
+                <div class="form-group">
+                    <label>Interest Type:</label><br />
+                    <label class="radio-inline"><input type="radio" name="interestType" ngModel value="simple" [disabled]="loading">Simple</label>
+                    <label class="radio-inline"><input type="radio" name="interestType" ngModel value="compound" [disabled]="loading">Compound</label>
+                </div>
+
+                <div class="form-group">
+                    <label>Interest Percentage:</label>
+                    <input type="number" step="0.01" class="form-control" required="true" name="interest" ngModel placeholder="Enter Interest" [disabled]="loading">
+                </div>
+
+                <div class="form-group">
+                    <label>Special Interest Percentage:</label>
+                    <input type="number" step="0.01" class="form-control" name="specialInterest" ngModel placeholder="Enter Special Interest" [disabled]="loading">
+                </div>
+
+                <div class="form-group">
+                    <label>Interest Calculation:</label><br />
+                    <label class="radio-inline"><input type="radio" name="interestCalculation" ngModel value="monthly" [disabled]="loading">Monthly</label>
+                    <label class="radio-inline"><input type="radio" name="interestCalculation" ngModel value="quarterly" [disabled]="loading">Quarterly</label>
+                    <label class="radio-inline"><input type="radio" name="interestCalculation" ngModel value="haflYearly" [disabled]="loading">Half Yearly</label>
+                    <label class="radio-inline"><input type="radio" name="interestCalculation" ngModel value="yearly" [disabled]="loading">Yearly</label>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="form-group">
+                    <label>Period Type:</label><br />
+                    <label class="radio-inline"><input type="radio" name="periodType" ngModel value="days" [disabled]="loading">Days</label>
+                    <label class="radio-inline"><input type="radio" name="periodType" ngModel value="months" [disabled]="loading">Months</label>
+                </div>
+
+                <div class="form-group">
+                    <label>Period:</label><br />
+                    <label>To:</label><input type="number" class="form-control" required="true" name="to" ngModel placeholder="Enter Start Period" [disabled]="loading">
+                    <label>From:</label><input type="number" class="form-control" required="true" name="from" ngModel placeholder="Enter End Period" [disabled]="loading">
+                </div>
+            </div>
+
+            <hr />
+            <button type="submit" class="btn btn-success btn-lg" [disabled]="newPlanForm.form.invalid">Save</button>
+        </div>
+    </form>
+</div>

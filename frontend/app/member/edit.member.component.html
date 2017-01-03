@@ -1,0 +1,165 @@
+<app-header></app-header>
+<div class="loading" *ngIf="loading"></div>
+
+<!--<div class="col-sm-6 col-sm-offset-3" [hidden]="!notificationFlag">
+    <div class="alert alert-success alert-dismissable fade in" *ngIf="successFlag">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> {{ successMessage }}
+    </div>
+</div>
+
+<br /><br /><br /><br /><br />-->
+
+<div class="row">
+
+    <div class="col-md-8 col-md-offset-2">
+        <form (ngSubmit)="onSave(editMemberForm)" #editMemberForm="ngForm" data-dismiss="modal">
+            <!-- Personal Details-->
+            <h2>Personal Details</h2>
+
+            <div class="form-group dual">
+                <label>First Name:</label>
+                <input type="text" class="form-control" required="true" name="firstName" [(ngModel)]="firstName" placeholder="Enter First Name"
+                    [disabled]="loading" autocomplete="off">
+            </div>
+
+            <div class="form-group dual">
+                <label>Middle Name:</label>
+                <input type="text" class="form-control" required="true" name="middleName" [(ngModel)]="middleName" placeholder="Enter Middle Name"
+                    [disabled]="loading" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label>Last Name:</label>
+                <input type="text" class="form-control" required="true" name="lastName" [(ngModel)]="lastName" placeholder="Enter Last Name"
+                    [disabled]="loading" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" class="form-control" name="email" [(ngModel)]="email" placeholder="Enter email"
+                    [disabled]="loading" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label>Mobile:</label>
+                <input type="text" class="form-control" required="true" name="mobile" [(ngModel)]="mobile" placeholder="Enter Mobile Number"
+                    [disabled]="loading" autocomplete="off" maxlength="10">
+            </div>
+
+            <div class="form-group">
+                <label>Pan No:</label>
+                <input type="text" class="form-control" required="true" name="panNo" [(ngModel)]="panNo" placeholder="Enter Pan Card Number"
+                    [disabled]="loading" autocomplete="off" maxlength="10">
+            </div>
+
+            <div class="form-group">
+                <label>Aadhar No:</label>
+                <input type="text" class="form-control" required="true" name="aadharNo" [(ngModel)]="aadharNo" placeholder="Enter Aadhar Card Number"
+                    [disabled]="loading" autocomplete="off">
+            </div>
+
+            <div class="form-group hero-unit">
+                <label>Date of Birth:</label>
+                <input type="date" class="form-control" name="dob" ngModel placeholder="Enter DOB" [disabled]="loading">
+            </div>
+
+            <div class="form-group">
+                <label>Gender:</label><br />
+                <label class="radio-inline"><input type="radio" name="gender" ngModel value="male" checked="{{ male }}" [disabled]="loading">Male</label>
+                <label class="radio-inline"><input type="radio" name="gender" ngModel value="female" checked="{{ female }}" [disabled]="loading">Female</label>
+            </div>
+
+            <div class="form-group">
+                <label for="comment">Residential Address:</label>
+                <textarea class="form-control" rows="5" ngModel [(ngModel)]="address" name="address"></textarea>
+            </div>
+
+            <br />
+            <hr />
+            <br />
+
+            <!-- Nominee Details-->
+            <h2>Nominee Information</h2>
+            <div class="form-group">
+                <label>Noninee's First Name:</label>
+                <input type="text" class="form-control" name="nomineeFirstName" [(ngModel)]="nomineeFirstName" placeholder="Enter Nominee's First Name" [disabled]="loading"
+                    autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label>Noninee's Middle Name:</label>
+                <input type="text" class="form-control" name="nomineeMiddleName" [(ngModel)]="nomineeMiddleName" placeholder="Enter Nominee's Middle Name" [disabled]="loading"
+                    autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label>Noninee's Last Name:</label>
+                <input type="text" class="form-control" name="nomineeLastName" [(ngModel)]="nomineeLastName" placeholder="Enter Nominee's Last Name" [disabled]="loading"
+                    autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label>Age:</label>
+                <select name="nomineeAge" class="form-control" [(ngModel)]="nomineeAge" [disabled]="loading">
+                    <option [value]="" selected="true">Select Nominee Age</option>
+                    <option *ngFor="let age of ages; let i = index;" [value]="age">{{ age }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Relation:</label><br />
+                <label class="radio-inline"><input type="radio" name="relation" value="father" checked="{{ father }}" (click)="onClick('father')" [disabled]="loading">Father</label>
+                <label class="radio-inline"><input type="radio" name="relation" value="mother" checked="{{ mother }}" (click)="onClick('mother')" [disabled]="loading">Mother</label>
+                <label class="radio-inline"><input type="radio" name="relation" value="husband" checked="{{ husband }}" (click)="onClick('husband')" [disabled]="loading">Husband</label>
+                <label class="radio-inline"><input type="radio" name="relation" value="wife" checked="{{ wife }}" (click)="onClick('wife')" [disabled]="loading">Wife</label>
+                <label class="radio-inline"><input type="radio" name="relation" value="son" checked="{{ son }}" (click)="onClick('son')" [disabled]="loading">Son</label>
+                <label class="radio-inline"><input type="radio" name="relation" value="daughter" checked="{{ daughter }}" (click)="onClick('daughter')" [disabled]="loading">Daughter</label>
+                <label class="radio-inline"><input type="radio" name="relation" value="brother" checked="{{ brother }}" (click)="onClick('brother')" [disabled]="loading">Brother</label>
+                <label class="radio-inline"><input type="radio" name="relation" value="sister" checked="{{ sister }}" (click)="onClick('sister')" [disabled]="loading">Sister</label>
+                <label class="radio-inline"><input type="radio" name="relation" value="others" checked="{{ other }}" (click)="onClick('others')" [disabled]="loading">Others</label>
+            </div>
+
+            <div class="form-group" [hidden]="!others">
+                <label>Nominee Relation:</label>
+                <input type="text" class="form-control" name="nomineeRelation" [(ngModel)]="nomineeRelation" placeholder="Enter Nominee Relation" [disabled]="loading" autocomplete="off" [hidden]="!others">
+            </div>
+
+            <br />
+            <hr />
+            <br />
+
+            <!-- Employment or Business Details-->
+            <h2>Employment or Business Details</h2>
+
+            <div class="form-group">
+                <label>Company Name:</label>
+                <input type="text" class="form-control" name="companyName" [(ngModel)]="company" placeholder="Enter Company Name" [disabled]="loading"
+                    autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label>Designation:</label>
+                <input type="text" class="form-control" name="designation" [(ngModel)]="designation" placeholder="Enter Designation" [disabled]="loading" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label>Department:</label>
+                <input type="text" class="form-control" name="department" [(ngModel)]="department" placeholder="Enter Department" [disabled]="loading" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label>Monthly Income:</label>
+                <input type="number" class="form-control" name="monthlyIncome" [(ngModel)]="income" placeholder="Enter Monthly Income" [disabled]="loading"
+                    autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label for="officeAddress">Office Address:</label>
+                <textarea class="form-control" rows="5" [(ngModel)]="officeAddress" name="officeAddress" [disabled]="loading"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-lg">Save</button>
+        </form>
+    </div>
+</div>

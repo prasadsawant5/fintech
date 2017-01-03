@@ -1,0 +1,48 @@
+<app-header></app-header>
+<div class="col-sm-6 col-sm-offset-3" [hidden]="!notificationFlag">
+    <div class="alert alert-danger alert-dismissable fade in" *ngIf="errFlag">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> {{ errMessage }}
+    </div>
+
+    <div class="alert alert-success alert-dismissable fade in" *ngIf="successFlag">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> {{ successMessage }}
+    </div>
+</div>
+
+<br /><br /><br /><br /><br />
+
+<div class="row">
+    <div class="col-xs-6 col-md-4 col-md-offset-4">
+        <form (ngSubmit)="onSave()" [formGroup]="editProfileForm" data-dismiss="modal">
+            <div class="form-group">
+                <label>First Name:</label>
+                <input type="text" class="form-control" required="true" name="firstName" formControlName="firstName" ngModel [(ngModel)]="firstName"
+                    placeholder="Enter your first name">
+            </div>
+
+            <div class="form-group">
+                <label>Last Name:</label>
+                <input type="text" class="form-control" required="true" name="lastName" formControlName="lastName" ngModel [(ngModel)]="lastName"
+                    placeholder="Enter your last name">
+            </div>
+
+            <div class="form-group">
+                <label>Username:</label>
+                <input type="text" class="form-control" required="true" name="username" formControlName="username" ngModel [(ngModel)]="username"
+                    placeholder="Enter your username">
+            </div>
+
+            <div class="form-group">
+                <label>Mobile:</label>
+                <input type="tel" class="form-control" required="true" name="mobile" formControlName="mobile" ngModel [(ngModel)]="mobile"
+                    placeholder="Enter your mobile number">
+            </div>
+
+            <hr />
+            <button type="submit" class="btn btn-success btn-lg">Save</button>
+            <a routerLink="/" class="btn btn-info btn-lg">Cancel</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<br /><br /><br />
+<div class="jumbotron text-center" *ngIf="!isLoggedIn()">
+    <h1><span class="fa fa-inr"></span> Capital One</h1>
+
+    <div class="row">
+        <div class="col-xs-6 col-md-4 col-md-offset-4">
+            <form (ngSubmit)="login(loginForm)" #loginForm="ngForm" data-dismiss="modal">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" class="form-control" required="true" name="username" id="username" ngModel placeholder="Enter your username">
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" required="true" name="password" id="password" ngModel placeholder="Enter your password">
+                </div>
+
+                <div class="alert alert-danger alert-dismissable fade in" *ngIf="errFlag">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Error!</strong> {{ errMessage }}
+                </div>
+
+                <hr />
+                    <button type="submit" class="btn btn-success btn-lg">Login</button>
+            </form>
+        </div>
+    </div> 
+</div>
+
+<div class="dashboard" *ngIf="isLoggedIn()">
+    <app-header></app-header>
+
+    <div class="row">
+        <div class="col-md-3">
+            
+        </div>
+
+        <div class="col-md-6">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr class="success">
+                        <td>Total Active Members:</td>
+                        <td>{{ activeMembers }}</td>
+                    </tr>
+                    <tr class="danger">
+                        <td>Total Non-Active Members:</td>
+                        <td>{{ nonActiveMembers }}</td>
+                    </tr>
+                    <tr class="info">
+                        <td>Total Members:</td>
+                        <td>{{ totalMembers }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="col-md-3"></div>
+    </div>
+</div>

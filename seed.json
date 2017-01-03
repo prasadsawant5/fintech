@@ -1,0 +1,5 @@
+{
+	"undefined": "mongodb://prasadsawant5:seres2200@ds127938.mlab.com:27938/fin_tech",
+	"dev": "mongodb://prasadsawant5:seres2200@ds127938.mlab.com:27938/fin_tech",
+	"prod": "mongodb://prasadsawant5:seres2200@ds127938.mlab.com:27938/fin_tech"
+}

@@ -1,0 +1,17 @@
+div.row {
+    margin-bottom: 20px;
+}
+
+/*form button[type="submit"] {
+    margin-top: 300px;
+}*/
+.overlay{
+    margin-left: -3%;
+    margin-top:-20px;
+    z-index:100;
+    width:103%;
+    height: 102%;
+    position:absolute;
+    display: block;
+    background-color: rgba(0,0,0, 0.6);
+}

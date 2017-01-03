@@ -1,0 +1,26 @@
+[
+    {
+        "name": "DAILY COLLECTION",
+        "type": "LIABILITY"
+    },
+     {
+        "name": "FIXED DEPOSIT",
+        "type": "LIABILITY"
+    },
+     {
+        "name": "INVESTMENT",
+        "type": "ASSET"
+    },
+     {
+        "name": "LOAN ACCOUNT",
+        "type": "ASSET"
+    },
+     {
+        "name": "OTHERS",
+        "type": "ASSET"
+    },
+     {
+        "name": "RECURRING DEPOSIT",
+        "type": "LIABILITY"
+    }
+]

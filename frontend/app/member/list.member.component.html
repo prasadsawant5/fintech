@@ -1,0 +1,70 @@
+<app-header></app-header>
+<div class="loading" *ngIf="loading"></div>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <form #searchMemberForm="ngForm" (ngSubmit)="onSearch(searchMemberForm)">
+            <div class="col-md-12">
+                <h2>Search Member</h2>
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" class="form-control input-lg" name="lastName" required="true" ngModel placeholder="Enter Last Name" autocomplete="off" [disabled]="loading" />                    
+                </div>
+                <div class="form-group">
+                    <label for="query">Mobile Number or Aadhar Number or Pan Number:</label>
+                    <input type="text" class="form-control input-lg" name="query" ngModel placeholder="Enter Mobile Number or Aadhar Number or Pan Number" autocomplete="off" [disabled]="loading" />                    
+                </div>
+
+                <hr />
+                <button type="submit" class="btn btn-info btn-lg" [disabled]="loading">Search</button>
+                <a routerLink="/" class="btn btn-default btn-lg">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<br /><br /><br />
+
+<div class="col-sm-6 col-sm-offset-3" [hidden]="!notificationFlag">
+    <div class="alert alert-danger alert-dismissable fade in" *ngIf="errFlag">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> {{ errMessage }}
+    </div>
+
+    <div class="alert alert-success alert-dismissable fade in" *ngIf="successFlag">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> {{ successMessage }}
+    </div>
+</div>
+
+<br /><br /><br />
+
+<div class="col-md-12" *ngIf="successFlag">
+    <table class="table table-responsive table-hover table-bordered">
+        <thead>
+            <tr>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Member ID</td>
+                <td>Mobile</td>
+                <td>Email</td>
+                <td>Address</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let member of members; let i = index; trackBy: trackByFn">
+                <td [innerText]="member.firstName"></td>
+                <td [innerText]="member.lastName"></td>
+                <td [innerText]="member.memberId"></td>
+                <td [innerText]="member.mobile"></td>
+                <td>{{ member.email }}</td>
+                <td>{{ member.address }}</td>
+                <td><a routerLink="/member/edit/{{member._id}}">Edit</a> | <a routerLink="/member/view/{{member._id}}">View</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+

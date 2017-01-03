@@ -1,0 +1,29 @@
+<app-header></app-header>
+<div class="loading" *ngIf="loading"></div>
+
+<div class="row col-md-6 col-md-offset-3">
+     <form (ngSubmit)="onSave(newSchemeForm)" #newSchemeForm="ngForm">
+         <h2>Add New Scheme</h2>
+
+         <div class="form-group">
+            <label for="sel1">Ledger Nature:</label>
+            <select class="form-control" id="sel1" name="ledgerNature" (change)="onChange($event.target.value)">
+                <option [value]="" selected="true">Select Ledger Type</option>
+                <option *ngFor="let ledger of ledgers; let i = index;" [value]="ledger.name">{{ ledger.name }}</option>
+            </select>
+        </div>
+
+         <div class="form-group">
+             <label>Ledger Name:</label>
+             <input type="text" class="form-control" required="true" name="ledgerName" ngModel placeholder="Enter Ledger Name">
+        </div>
+
+        <div class="form-group">
+            <label>Ledger Type:</label>
+            <input type="text" class="form-control" required="true" name="ledgerType" ngModel [(ngModel)]="nature" placeholder="Enter Ledger Type" readonly>
+        </div>
+
+        <hr />
+        <button type="submit" class="btn btn-success btn-lg" [disabled]="newSchemeForm.form.invalid">Save</button>
+    </form>    
+</div>
