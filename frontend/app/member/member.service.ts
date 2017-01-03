@@ -9,10 +9,12 @@ import { Injectable } from '@angular/core';
 export class MemberService {
     constructor(private http: Http, private errorService: ErrorService) {}
 
+    HOST: string = 'http://104.199.223.132/:3000';
+
     addMember(member: Member) {
         const body = JSON.stringify(member);
         const headers = new Headers({ 'Content-Type': 'application/json', 'token': localStorage.getItem('token') });
-        return this.http.post('http://localhost:3000/members/new', body, { headers: headers })
+        return this.http.post(this.HOST + '/members/new', body, { headers: headers })
             .map((response: Response) => response.json())
             .catch((error: Response) =>  {
                 return Observable.throw(error.json()) 
@@ -22,7 +24,7 @@ export class MemberService {
     search(member: Member) {
         const body = JSON.stringify(member);
         const headers = new Headers({ 'Content-Type': 'application/json', 'token': localStorage.getItem('token') });
-        return this.http.post('http://localhost:3000/members/search', body, {headers: headers})
+        return this.http.post(this.HOST + '/members/search', body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) =>  { 
                 return Observable.throw(error.json()) 
@@ -31,7 +33,7 @@ export class MemberService {
 
     getMember(id: string) {
         const headers = new Headers({ 'Content-Type': 'application/json', 'token': localStorage.getItem('token'), 'id': id });
-        return this.http.get('http://localhost:3000/members/', {headers: headers})
+        return this.http.get(this.HOST + '/members/', {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) =>  {
                 return Observable.throw(error.json()) 
@@ -41,7 +43,7 @@ export class MemberService {
     editMember(member: Member, id: string) {
         const body = JSON.stringify(member);
         const headers = new Headers({ 'Content-Type': 'application/json', 'token': localStorage.getItem('token'), 'id': id  });
-        return this.http.patch('http://localhost:3000/members/', body, {headers: headers})
+        return this.http.patch(this.HOST + '/members/', body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) =>  { 
                 return Observable.throw(error.json()) 

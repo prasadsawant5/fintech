@@ -7,9 +7,11 @@ import { Injectable } from '@angular/core';
 export class SchemeService {
     public constructor(private http: Http) {}
 
+    HOST: string = 'http://104.199.223.132/:3000';
+
     getAllLedgers() {
         const headers = new Headers({ 'Content-Type': 'application/json', 'token': localStorage.getItem('token') });
-        return this.http.get('http://localhost:3000/ledgers', { headers: headers })
+        return this.http.get(this.HOST + '/ledgers', { headers: headers })
             .map((response: Response) => response.json())
             .catch((error: Response) =>  { 
                 return Observable.throw(error.json()) 
@@ -19,7 +21,7 @@ export class SchemeService {
 
     getAllSchemes() {
         const headers = new Headers({ 'Content-Type': 'application/json', 'token': localStorage.getItem('token') });
-        return this.http.get('http://localhost:3000/schemes', { headers: headers })
+        return this.http.get(this.HOST + '/schemes', { headers: headers })
             .map((response: Response) => response.json())
             .catch((error: Response) =>  { 
                 return Observable.throw(error.json()) 
@@ -30,7 +32,7 @@ export class SchemeService {
     createScheme(scheme: Scheme) {
         const headers = new Headers({ 'Content-Type': 'application/json', 'token': localStorage.getItem('token') });
         const body = JSON.stringify(scheme);
-        return this.http.post('http://localhost:3000/schemes', body, { headers: headers })
+        return this.http.post(this.HOST + '/schemes', body, { headers: headers })
             .map((response: Response) => response.json())
             .catch((error: Response) =>  { 
                 return Observable.throw(error.json()) 
