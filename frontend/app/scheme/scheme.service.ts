@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class SchemeService {
     public constructor(private http: Http) {}
 
-    HOST: string = 'http://104.199.223.132/:3000';
+    HOST: string = 'http://104.199.223.132:3000';
 
     getAllLedgers() {
         const headers = new Headers({ 'Content-Type': 'application/json', 'token': localStorage.getItem('token') });

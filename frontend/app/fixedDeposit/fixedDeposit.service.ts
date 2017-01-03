@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class FixedDepositService {
     public constructor(public http: Http) {}
 
-    HOST: string = 'http://104.199.223.132/:3000';
+    HOST: string = 'http://104.199.223.132:3000';
 
     createFixedDeposit(fixedDeposit: FixedDeposit) {
         const body = JSON.stringify(fixedDeposit);

@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class UserService {
     constructor(private http: Http) {}
 
-    HOST: string = 'http://104.199.223.132/:3000';
+    HOST: string = 'http://104.199.223.132:3000';
 
     editProfile(user: User) {
         const body = JSON.stringify(user);

@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 export class MemberService {
     constructor(private http: Http, private errorService: ErrorService) {}
 
-    HOST: string = 'http://104.199.223.132/:3000';
+    HOST: string = 'http://104.199.223.132:3000';
 
     addMember(member: Member) {
         const body = JSON.stringify(member);
