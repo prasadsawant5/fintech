@@ -1,0 +1,54 @@
+<app-header></app-header>
+<div class="loading" *ngIf="loading"></div>
+
+<div class="row col-md-6 col-md-offset-3">
+    <form (ngSubmit)="onSave(openFixedDepositAccount)" #openFixedDepositAccount="ngForm">
+        <h2>Open Fixed Deposit Account</h2>
+
+        <div class="form-group">
+            <label>Member Full Name:</label>
+            <input type="text" class="form-control" name="fullName" [(ngModel)]="fullName" [disabled]="loading" readonly="true">
+        </div>
+
+        <div class="form-group">
+            <label>Member ID:</label>
+            <input type="text" class="form-control" name="memberId" [(ngModel)]="memId" [disabled]="loading" readonly="true">
+        </div>
+
+        <hr />
+
+        <div class="form-group">
+            <label for="sel1">Scheme:</label>
+                <select class="form-control" id="sel1" name="schemeName" ngModel (change)="onChange($event.target.value)" [disabled]="loading">
+                    <option value="" selected="true">Select a Scheme</option>
+                    <option *ngFor="let fd of fdSchemes;" [value]="fd.ledgerName">{{ fd.ledgerName }}</option>
+            </select>
+        </div>        
+
+        <div *ngIf="details">
+
+            <div class="form-group">
+                <label for="sel1">Scheme:</label>
+                <select class="form-control" id="sel1" name="interest" ngModel (change)="onChange($event.target.value)" [disabled]="loading">
+                    <option value="" selected="true">Select Interest</option>
+                    <option *ngFor="let interest of interestArray;" [value]="interest">{{ interest }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Period Type:</label><br />
+                <label class="radio-inline"><input type="radio" name="periodType" ngModel value="days" [disabled]="loading">Days</label>
+                <label class="radio-inline"><input type="radio" name="periodType" ngModel value="months" [disabled]="loading">Months</label>
+            </div>
+
+            <div class="form-group">
+                <label>Period:</label>
+                <input type="number" class="form-control" name="period" placeholder="Enter Period" ngModel required="true" autocomplete="false" />
+            </div>
+        </div>
+
+        <hr />
+
+        <input type="submit" value="Open Fixed Deposit Account" class="btn btn-success" />
+    </form>
+</div>

@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class SchemeService {
     public constructor(private http: Http) {}
 
-    HOST: string = 'http://104.199.223.132:3000';
+    HOST: string = 'http://localhost:3000';
 
     getAllLedgers() {
         const headers = new Headers({ 'Content-Type': 'application/json', 'token': localStorage.getItem('token') });
@@ -22,6 +22,16 @@ export class SchemeService {
     getAllSchemes() {
         const headers = new Headers({ 'Content-Type': 'application/json', 'token': localStorage.getItem('token') });
         return this.http.get(this.HOST + '/schemes', { headers: headers })
+            .map((response: Response) => response.json())
+            .catch((error: Response) =>  { 
+                return Observable.throw(error.json()) 
+            });
+    }
+
+
+    getAllFdSchemes() {
+        const headers = new Headers({ 'Content-Type': 'application/json', 'token': localStorage.getItem('token') });
+        return this.http.get(this.HOST + '/schemes/fd', { headers: headers })
             .map((response: Response) => response.json())
             .catch((error: Response) =>  { 
                 return Observable.throw(error.json()) 

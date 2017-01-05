@@ -2,8 +2,8 @@
 <div class="loading" *ngIf="loading"></div>
 
 <div class="row col-md-6 col-md-offset-3">
-    <form (ngSubmit)="onSave(newPlanForm)" #newPlanForm="ngForm">
-        <h2>Add New Plan</h2>
+    <form (ngSubmit)="onSave(newFixedDepositPlanForm)" #newFixedDepositPlanForm="ngForm">
+        <h2>Add New Fixed Deposit Plan</h2>
 
         <div class="form-group">
             <label for="sel1">Scheme:</label>
@@ -13,7 +13,7 @@
             </select>
         </div>
 
-        <div [hidden]="interestFlag">
+        <div *ngIf="!interestFlag">
             <div class="panel panel-default">
                 <div class="form-group">
                     <label>Interest Type:</label><br />
@@ -49,13 +49,13 @@
 
                 <div class="form-group">
                     <label>Period:</label><br />
-                    <label>To:</label><input type="number" class="form-control" required="true" name="to" ngModel placeholder="Enter Start Period" [disabled]="loading">
-                    <label>From:</label><input type="number" class="form-control" required="true" name="from" ngModel placeholder="Enter End Period" [disabled]="loading">
+                    <label>Start:</label><input type="number" class="form-control" required="true" name="start" ngModel placeholder="Enter Start Period" [disabled]="loading">
+                    <label>End:</label><input type="number" class="form-control" required="true" name="end" ngModel placeholder="Enter End Period" [disabled]="loading">
                 </div>
             </div>
 
             <hr />
-            <button type="submit" class="btn btn-success btn-lg" [disabled]="newPlanForm.form.invalid">Save</button>
+            <button type="submit" class="btn btn-success btn-lg" [disabled]="newFixedDepositPlanForm.form.invalid">Save</button>
         </div>
     </form>
 </div>

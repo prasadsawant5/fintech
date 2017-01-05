@@ -47,7 +47,6 @@ export class AddNewPlanComponent implements OnInit {
             newPlanForm.value.interestType.toUpperCase(),
             parseFloat(newPlanForm.value.interest),
             parseFloat(newPlanForm.value.specialInterest),
-            newPlanForm.value.interestCalculation,
             newPlanForm.value.periodType.toUpperCase(),
             parseInt(newPlanForm.value.to),
             parseInt(newPlanForm.value.from),
@@ -56,8 +55,6 @@ export class AddNewPlanComponent implements OnInit {
             null,
             null
         );
-        
-        console.log(fixedDeposit);
 
         this.fixedDepositService.createFixedDeposit(fixedDeposit)
             .subscribe(
@@ -66,12 +63,13 @@ export class AddNewPlanComponent implements OnInit {
                         this.notificationService.handleNotification(data.message);
                     }
                     newPlanForm.reset();
+                    this.interestFlag = true;
                 },
                 error => {
                     this.errorService.handleError(error.message);
                     newPlanForm.reset();
                 }
-            )
+            );
     }
 
     ngOnInit() {
@@ -89,6 +87,6 @@ export class AddNewPlanComponent implements OnInit {
                 error => {
                     this.errorService.handleError('Unable to find all the schemes at this moment. Please try again later.');
                 }
-            )
+            );
     }
 }

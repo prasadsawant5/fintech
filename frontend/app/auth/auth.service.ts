@@ -11,7 +11,7 @@ import { User } from './user.model';
 export class AuthService {
     constructor(private http: Http, private router: Router) {}
 
-    HOST: string = 'http://104.199.223.132:3000';    
+    HOST: string = 'http://localhost:3000';    
 
     login(user: User) {
         var headers = new Headers({'Content-Type': 'application/json', 'username': user.username, 'password': user.password});

@@ -9,17 +9,12 @@ var Schema = mongoose.Schema;
 
 var fixedDepositSchema = new Schema({
     name: { type: String, required: true, uppercase: true },
-    details: [
-        {
-            interestType: { type: String, require: true, uppercase: true, enum: ['SIMPLE', 'COMPOUND'] },
-            interest: { type: Number, required: true },
-            specialInterest: { type: Number, required: true },
-            interestCalculation: { type: String, required: true, uppercase: true, enum: ['MONTHLY', 'QUARTERLY', 'HALF YEARLY', 'YEARLY'] },
-            periodType: { type: String, required: true, uppercase: true, enum: ['DAYS', 'MONTHS'] },
-            to: { type: Number, required: true },
-            from: { type: Number, required: true }
-        }
-    ],
+    interestType: { type: String, require: true, uppercase: true, enum: ['SIMPLE', 'COMPOUND'] },
+    interest: { type: Number, required: true },
+    specialInterest: { type: Number, required: true },
+    periodType: { type: String, required: true, uppercase: true, enum: ['DAYS', 'MONTHS'] },
+    start: { type: Number, required: true },
+    end: { type: Number, required: true },
     schemeId: { type: mongoose.Schema.Types.ObjectId, ref: 'Scheme', required: true },
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     updatedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },

@@ -1,0 +1,46 @@
+<app-header></app-header>
+<div class="loading" *ngIf="loading"></div>
+
+
+<div class="row col-md-6 col-md-offset-3">
+    <h2>Edit Fixed Deposit Plan</h2>
+
+    <div class="form-group">
+        <label for="sel1">Scheme:</label>
+        <select class="form-control" id="sel1" name="schemeName" ngModel (change)="onChange($event.target.value)" [disabled]="loading">
+                <option value="" selected="true">Select a Scheme</option>
+                <option *ngFor="let scheme of schemes; trackBy: trackScheme" [value]="scheme.ledgerName">{{ scheme.ledgerName }}</option>
+            </select>
+    </div>
+
+</div>
+
+<div class="col-md-12" *ngIf="fdFlag">
+    <!--<form (ngSubmit)="onSave(editFixedDepositPlanForm)" #editFixedDepositPlanForm="ngForm">
+    </form>-->
+
+    <table class="table table-responsive table-hover table-bordered">
+        <thead>
+            <tr>
+                <td>Interest Type:</td>
+                <td>Interest:</td>
+                <td>Special Interest:</td>
+                <td>Period Type:</td>
+                <td>Start:</td>
+                <td>End:</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let fixedDeposit of fixedDeposits; let i = index;">
+                    <td>{{ fixedDeposit.interestType }}</td>
+                    <td>{{ fixedDeposit.interest }}</td>
+                    <td>{{ fixedDeposit.specialInterest }}</td>
+                    <td>{{ fixedDeposit.periodType }}</td>
+                    <td>{{ fixedDeposit.start }}</td>
+                    <td>{{ fixedDeposit.end }}</td>
+                    <td><a routerLink="/fixeddeposit/plan/edit/{{fixedDeposit._id}}" class="btn btn-info">Edit</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

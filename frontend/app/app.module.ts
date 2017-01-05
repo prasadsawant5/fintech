@@ -1,3 +1,8 @@
+import { OpenFixedDepositAccountComponent } from './fixedDeposit/open.fixed.deposit.account.component';
+import { SearchMemberFixedDepositComponent } from './fixedDeposit/search.member.fixed.deposit.component';
+import { FindFixedDepositPlanComponent } from './fixedDeposit/find.fixed.deposit.plan.component';
+import { EditFixedDepositPlanComponent } from './fixedDeposit/edit.fixed.deposit.plan.component';
+import { AddNewFixedDepositPlanComponent } from './fixedDeposit/add.new.fixed.deposit.plan.component';
 import { FixedDepositService } from './fixedDeposit/fixedDeposit.service';
 import { NotificationService } from './notification/notification.service';
 import { NotificationComponent } from './notification/notification.component';
@@ -43,6 +48,11 @@ import { AppComponent } from './app.component';
         ViewMemberComponent,
         AddNewSchemeComponent,
         AddNewPlanComponent,
+        SearchMemberFixedDepositComponent,
+        OpenFixedDepositAccountComponent,
+        AddNewFixedDepositPlanComponent,
+        FindFixedDepositPlanComponent,
+        EditFixedDepositPlanComponent,
         ErrorComponent,
         NotificationComponent
     ],

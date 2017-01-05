@@ -37,14 +37,14 @@ router.get('/', function (req, res, next) {
         if (err) {
             console.error(err);
             return res.status(500).json({
-                message: 'Not able to save member.',
+                message: 'Cannot find Member information at this point. Please try again later.',
                 obj: err
             });
         }
 
         if (member === null) {
             return res.status(500).json({
-                message: 'Not able to save member.',
+                message: 'Cannot find Member information at this point. Please try again later.',
                 obj: null
             });
         }
@@ -53,14 +53,14 @@ router.get('/', function (req, res, next) {
             if (err) {
                 console.error(err);
                 return res.status(500).json({
-                    message: 'Not able to save member.',
+                    message: 'Not able to find nominee information.',
                     obj: err
                 });
             }
 
             if (nominee === null) {
                 return res.status(500).json({
-                    message: 'Not able to save member.',
+                    message: 'Not able to find nominee information.',
                     obj: null
                 });
             }

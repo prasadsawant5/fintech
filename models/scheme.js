@@ -10,7 +10,7 @@ var Schema = mongoose.Schema;
 var schemeSchema = new Schema({
     ledgerId: { type: mongoose.Schema.Types.ObjectId, ref: 'Ledger', required: true },
     ledgerNature: { type: String, required: true, uppercase: true, ref: 'Ledger' },
-    ledgerName: { type: String, required: true, uppercase: true, ref: 'Ledger' },
+    ledgerName: { type: String, required: true, uppercase: true, unique: true  },
     ledgerType: { type: String, required: true, uppercase: true, ref: 'Ledger' },
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     updatedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },

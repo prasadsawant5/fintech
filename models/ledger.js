@@ -17,6 +17,8 @@ var ledgerSchema = new Schema({
 ledgerSchema.plugin(mongooseUniqueValidator);
 
 ledgerSchema.pre('save', function(callback) {
+    var ledger = this;
+    
     ledger.createdAt = new Date();
     ledger.updatedAt = new Date();
 

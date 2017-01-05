@@ -1,3 +1,8 @@
+import { OpenFixedDepositAccountComponent } from './fixedDeposit/open.fixed.deposit.account.component';
+import { SearchMemberFixedDepositComponent } from './fixedDeposit/search.member.fixed.deposit.component';
+import { FindFixedDepositPlanComponent } from './fixedDeposit/find.fixed.deposit.plan.component';
+import { EditFixedDepositPlanComponent } from './fixedDeposit/edit.fixed.deposit.plan.component';
+import { AddNewFixedDepositPlanComponent } from './fixedDeposit/add.new.fixed.deposit.plan.component';
 import { AddNewPlanComponent } from './scheme/add.new.plan.component';
 import { ViewMemberComponent } from './member/view.member.component';
 import { AddNewSchemeComponent } from './scheme/add.new.scheme.component';
@@ -23,6 +28,12 @@ const APP_ROUTES: Routes = [
     { path: 'member/view/:id', component: ViewMemberComponent, canActivate: [CanActivateViaAuthGuard], pathMatch: 'full' },
     { path: 'scheme/new', component: AddNewSchemeComponent, canActivate: [CanActivateViaAuthGuard], pathMatch: 'full' },
     { path: 'plan/new', component: AddNewPlanComponent, canActivate: [CanActivateViaAuthGuard], pathMatch: 'full' },
+    { path: 'fixeddeposit/plan/new', component: AddNewFixedDepositPlanComponent, canActivate: [CanActivateViaAuthGuard], pathMatch: 'full' },
+    { path: 'fixeddeposit/plan/new/:id', component: AddNewFixedDepositPlanComponent, canActivate: [CanActivateViaAuthGuard], pathMatch: 'full' },
+    { path: 'fixeddeposit/plan/edit', component: FindFixedDepositPlanComponent, canActivate: [CanActivateViaAuthGuard], pathMatch: 'full' },
+    { path: 'fixeddeposit/plan/edit/:id', component: EditFixedDepositPlanComponent, canActivate: [CanActivateViaAuthGuard], pathMatch: 'full' },
+    { path: 'deposit/fixed/new', component: SearchMemberFixedDepositComponent, canActivate: [CanActivateViaAuthGuard], pathMatch: 'full' },
+    { path: 'deposit/fixed/new/:id', component: OpenFixedDepositAccountComponent, canActivate: [CanActivateViaAuthGuard], pathMatch: 'full' },
 ];
 
 export const routing = RouterModule.forRoot(APP_ROUTES);

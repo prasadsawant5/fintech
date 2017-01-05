@@ -8,11 +8,13 @@
                 <h2>Search Member</h2>
                 <div class="form-group">
                     <label for="lastName">Last Name:</label>
-                    <input type="text" class="form-control input-lg" name="lastName" required="true" ngModel placeholder="Enter Last Name" autocomplete="off" [disabled]="loading" />                    
+                    <input type="text" class="form-control input-lg" name="lastName" required="true" ngModel placeholder="Enter Last Name" autocomplete="off"
+                        [disabled]="loading" />
                 </div>
                 <div class="form-group">
                     <label for="query">Mobile Number or Aadhar Number or Pan Number:</label>
-                    <input type="text" class="form-control input-lg" name="query" ngModel placeholder="Enter Mobile Number or Aadhar Number or Pan Number" autocomplete="off" [disabled]="loading" />                    
+                    <input type="text" class="form-control input-lg" name="query" ngModel placeholder="Enter Mobile Number or Aadhar Number or Pan Number"
+                        autocomplete="off" [disabled]="loading" />
                 </div>
 
                 <hr />
@@ -43,28 +45,25 @@
     <table class="table table-responsive table-hover table-bordered">
         <thead>
             <tr>
-                <td>First Name</td>
-                <td>Middle Name</td>
-                <td>Last Name</td>
-                <td>Mobile</td>
-                <td>Address</td>
-                <td>Pan</td>
+                <td><strong>First Name</strong></td>
+                <td><strong>Middle Name</strong></td>
+                <td><strong>Last Name</strong></td>
+                <td><strong>Mobile</strong></td>
+                <td><strong>Address</strong></td>
+                <td><strong>Pan</strong></td>
                 <td></td>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let member of members; let i = index;">
+            <tr style="vertical-align: middle;" *ngFor="let member of members; let i = index;">
                 <td>{{ member.firstName }}</td>
                 <td>{{ member.middleName }}</td>
                 <td>{{ member.lastName }}</td>
                 <td>{{ member.mobile }}</td>
                 <td>{{ member.address }}</td>
-                <td>{{ member.pan }}</td>
-                <td><a routerLink="/member/edit/{{member._id}}">Edit</a> | <a routerLink="/member/view/{{member._id}}">View</a></td>
+                <td>{{ member.panNo }}</td>
+                <td><a class="btn btn-info" routerLink="/deposit/fixed/new/{{member._id}}">Select</a></td>
             </tr>
         </tbody>
     </table>
 </div>
-
-
-

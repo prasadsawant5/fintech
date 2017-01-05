@@ -105,5 +105,29 @@ router.post('/', function (req, res, next) {
 });
 
 
+router.get('/fd', function (req, res, next) {
+    var decoded = jwt.decode(req.headers.token);
+
+    Scheme.find({ ledgerNature: 'FIXED DEPOSIT' }, function(err, schemes) {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({
+                message: 'Not able to find all the Fixed Deposit Schemes.',
+                obj: null
+            });
+        }
+
+        if (schemes === null) {
+           return res.status(500).json({
+                message: 'Not able to find all the Fixed Deposit Schemes.',
+                obj: null
+            }); 
+        }
+
+        res.status(200).json({ message: 'Fixed Deposit Schemes found.', obj: schemes });
+    });
+});
+
+
 
 module.exports = router;
