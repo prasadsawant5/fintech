@@ -1,0 +1,42 @@
+<app-header></app-header>
+<div class="loading" *ngIf="loading"></div>
+
+<div class="row col-md-6 col-md-offset-3">
+    <h2>Edit Fixed Deposit Plan</h2>
+
+    <div class="form-group" *ngIf="!selected">
+        <label for="sel1">Scheme:</label>
+        <select class="form-control" id="sel1" name="schemeName" ngModel (change)="onChange($event.target.value)" [disabled]="loading">
+            <option value="" selected="true">Select a Scheme</option>
+            <option *ngFor="let scheme of schemes;" [value]="scheme.ledgerName">{{ scheme.ledgerName }}</option>
+        </select>
+    </div>
+
+    <div *ngIf="selected">
+        <form (ngSubmit)="onSave(editSchemeForm)" #editSchemeForm="ngForm">
+
+            <div class="form-group">
+                <label>Ledger Nature:</label>
+                <input type="text" class="form-control" name="ledgerNature" required="true" [(ngModel)]="ledgerNature" readonly="true">
+            </div>
+
+            <div class="form-group">
+                <label>Ledger Name:</label>
+                <input type="text" class="form-control" name="ledgerName" required="true" [(ngModel)]="ledgerName" [disabled]="loading">
+            </div>
+
+            <div class="form-group">
+                <label>Ledger Type:</label>
+                <input type="text" class="form-control" name="memberId" required="true" [(ngModel)]="ledgerType" readonly="true">
+            </div>
+
+            <hr />
+
+            <button type="submit" class="btn btn-success" [disabled]="loading || editSchemeForm.form.invalid">Save</button>
+            <button class="btn btn-default" (click)="onClick(editSchemeForm)">Cancel</button>
+
+        </form>
+
+    </div>
+
+</div>

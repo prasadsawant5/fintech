@@ -35,6 +35,12 @@ export class OpenFixedDepositAccountComponent implements OnInit {
     interestArray: Array<number> = [];
     fds: Array<any>;
     periods: Array<any> = [];
+    calculatedInterest: Number;
+    calculateInterestReadOnlyFlag: boolean = true;
+
+    amount: Number;
+    period: Number;
+    periodType: string;
 
 
     onChange(scheme) {
@@ -81,6 +87,25 @@ export class OpenFixedDepositAccountComponent implements OnInit {
 
                 break;
             }
+        }
+    }
+
+
+    onInterestChanged(interestType: string) {
+
+        switch (interestType) {
+            case 'other':
+                console.log('other');
+                this.calculateInterestReadOnlyFlag = false;
+            break;
+
+            case 'standard':
+                this.calculateInterestReadOnlyFlag = true;
+            break;
+
+            case 'special':
+                this.calculateInterestReadOnlyFlag = true;
+            break;
         }
     }
 

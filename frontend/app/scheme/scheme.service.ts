@@ -48,4 +48,15 @@ export class SchemeService {
                 return Observable.throw(error.json()) 
             });
     }
+
+
+    editScheme(id: string, ledgerName: string, oldLedgerName: string) {
+        const headers = new Headers({ 'Content-Type': 'application/json', 'token': localStorage.getItem('token') });
+        const body = JSON.stringify({ id: id, ledgerName: ledgerName.toUpperCase(), oldLedgerName: oldLedgerName.toUpperCase() });
+        return this.http.patch(this.HOST + '/schemes', body, { headers: headers })
+            .map((response: Response) => response.json())
+            .catch((error: Response) =>  { 
+                return Observable.throw(error.json()) 
+            });
+    }
 }

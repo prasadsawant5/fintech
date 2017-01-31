@@ -8,8 +8,12 @@ var router = express.Router();
 var User = require('../models/user');
 var Member = require('../models/member');
 var Scheme = require('../models/scheme');
+var FixedDeposit = require('../models/fixedDeposit');
 var config = require('../util/config');
 
+/**
+ * @description: Authentication
+ */
 router.all('/', function(req, res, next) {
     var token = req.headers.token;
 
@@ -24,7 +28,10 @@ router.all('/', function(req, res, next) {
   });
 });
 
-
+/**
+ * @description: Retrives all the schemes
+ * @param: null
+ */
 router.get('/', function (req, res, next) {
     var decoded = jwt.decode(req.headers.token);
 
@@ -48,7 +55,10 @@ router.get('/', function (req, res, next) {
     });
 });
 
-
+/**
+ * @description: Creates new scheme
+ * @param: ledgerId, ledgerNature, ledgerName
+ */
 router.post('/', function (req, res, next) {
     var body = req.body;
 
@@ -104,7 +114,88 @@ router.post('/', function (req, res, next) {
     });
 });
 
+/**
+ * @description: Updates an exisitng scheme
+ * @param: _id, ledgerName, oldLedgerName
+ */
+router.patch('/', function (req, res, next) {
+    var body = req.body;
 
+    if (body.ledgerName === null || body.ledgerName === '') {
+        return res.status(400).json({
+            message: 'Please enter a Ledger Name.',
+            obj: null
+        });
+    }
+
+    if (body.id === null || body.id === '') {
+        return res.status(400).json({
+            message: 'Ledger ID not found.',
+            obj: null
+        });
+    }
+
+    var decoded = jwt.decode(req.headers.token);
+
+    Scheme.findById(body.id, function(err, scheme) {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({
+                message: 'Not able to save the scheme.',
+                obj: null
+            });
+        }
+
+        if (scheme === null) {
+           return res.status(500).json({
+                message: 'Not able to save the scheme.',
+                obj: null
+            }); 
+        }
+
+        if (scheme.ledgerName === body.ledgerName.toUpperCase()) {
+            res.status(200).json({ message: 'Scheme updated successfully.', obj: scheme });
+        }
+
+        scheme.ledgerName = body.ledgerName.toUpperCase();
+        scheme.updatedBy = decoded.user._id;
+        
+        scheme.save(function(err, newScheme) {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({
+                    message: 'Not able to save the scheme.',
+                    obj: null
+                });
+            }
+
+            if (scheme === null) {
+                return res.status(500).json({
+                    message: 'Not able to save the scheme.',
+                    obj: null
+                }); 
+            }
+
+            FixedDeposit.update({ name: body.oldLedgerName.toUpperCase() }, { $set: { name: body.ledgerName.toUpperCase() } }, { multi: true }, function(err, fds) {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).json({
+                        message: 'Unable to find Fixed Deposit Plan.',
+                        obj: null
+                    });
+                }
+
+                res.status(200).json({ message: 'Scheme updated successfully.', obj: newScheme });
+            });
+        });
+    });
+});
+
+
+/**
+ * @description: Retrives all the fixed deposit schemes
+ * @param: null
+ */
 router.get('/fd', function (req, res, next) {
     var decoded = jwt.decode(req.headers.token);
 

@@ -68,7 +68,8 @@ export class FindFixedDepositPlanComponent implements OnInit {
             .subscribe(
                 data => {
                     if (data.obj !== null) {
-                        this.schemes = data.obj;                   }
+                        this.schemes = data.obj;                   
+                    }
                 },
                 error => {
                     this.errorService.handleError('Unable to find all the schemes at this moment. Please try again later.');

@@ -1,3 +1,4 @@
+import { EditSchemeComponent } from './scheme/edit.scheme.component';
 import { OpenFixedDepositAccountComponent } from './fixedDeposit/open.fixed.deposit.account.component';
 import { SearchMemberFixedDepositComponent } from './fixedDeposit/search.member.fixed.deposit.component';
 import { FindFixedDepositPlanComponent } from './fixedDeposit/find.fixed.deposit.plan.component';
@@ -6,7 +7,6 @@ import { AddNewFixedDepositPlanComponent } from './fixedDeposit/add.new.fixed.de
 import { FixedDepositService } from './fixedDeposit/fixedDeposit.service';
 import { NotificationService } from './notification/notification.service';
 import { NotificationComponent } from './notification/notification.component';
-import { AddNewPlanComponent } from './scheme/add.new.plan.component';
 import { ViewMemberComponent } from './member/view.member.component';
 import { ErrorService } from './error/error.service';
 import { ErrorComponent } from './error/error.component';
@@ -47,7 +47,7 @@ import { AppComponent } from './app.component';
         EditMemberComponent,
         ViewMemberComponent,
         AddNewSchemeComponent,
-        AddNewPlanComponent,
+        EditSchemeComponent,
         SearchMemberFixedDepositComponent,
         OpenFixedDepositAccountComponent,
         AddNewFixedDepositPlanComponent,

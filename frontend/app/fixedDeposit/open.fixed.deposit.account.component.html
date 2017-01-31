@@ -19,36 +19,57 @@
 
         <div class="form-group">
             <label for="sel1">Scheme:</label>
-                <select class="form-control" id="sel1" name="schemeName" ngModel (change)="onChange($event.target.value)" [disabled]="loading">
+            <select class="form-control" id="sel1" name="schemeName" ngModel (change)="onChange($event.target.value)" [disabled]="loading">
                     <option value="" selected="true">Select a Scheme</option>
                     <option *ngFor="let fd of fdSchemes;" [value]="fd.ledgerName">{{ fd.ledgerName }}</option>
             </select>
-        </div>        
+        </div>
 
         <div *ngIf="details">
 
             <div class="form-group">
-                <label for="sel1">Scheme:</label>
-                <select class="form-control" id="sel1" name="interest" ngModel (change)="onChange($event.target.value)" [disabled]="loading">
-                    <option value="" selected="true">Select Interest</option>
-                    <option *ngFor="let interest of interestArray;" [value]="interest">{{ interest }}</option>
-                </select>
+                <label>Amount:</label>
+                <input type="number" step="0.01" class="form-control" name="amount" placeholder="Enter Amount" [(ngModel)]="amount" required="true" autocomplete="false"
+                />
             </div>
 
             <div class="form-group">
                 <label>Period Type:</label><br />
-                <label class="radio-inline"><input type="radio" name="periodType" ngModel value="days" [disabled]="loading">Days</label>
-                <label class="radio-inline"><input type="radio" name="periodType" ngModel value="months" [disabled]="loading">Months</label>
+                <label class="radio-inline"><input type="radio" name="periodType" [(ngModel)]="periodType" value="days" [disabled]="loading">Days</label>
+                <label class="radio-inline"><input type="radio" name="periodType" [(ngModel)]="periodType" value="months" [disabled]="loading">Months</label>
             </div>
 
             <div class="form-group">
                 <label>Period:</label>
-                <input type="number" class="form-control" name="period" placeholder="Enter Period" ngModel required="true" autocomplete="false" />
+                <input type="number" class="form-control" name="period" placeholder="Enter Period" [(ngModel)]="period" required="true" autocomplete="false"
+                />
             </div>
+
+            <div *ngIf="amount !== null && amount !== undefined">
+                <div class="form-group">
+                    <label>Interest Type:</label><br />
+                    <label class="radio-inline"><input type="radio" name="interestType" ngModel value="standard" (change)="onInterestChanged($event.target.value)" [disabled]="loading">Standard</label>
+                    <label class="radio-inline"><input type="radio" name="interestType" ngModel value="special" (change)="onInterestChanged($event.target.value)" [disabled]="loading">Special</label>
+                    <label class="radio-inline"><input type="radio" name="interestType" ngModel value="other" (change)="onInterestChanged($event.target.value)" [disabled]="loading">Other</label>
+                </div>
+
+                <div class="form-group" *ngIf="calculateInterestReadOnlyFlag">
+                    <label>Interest:</label>
+                    <input type="number" class="form-control" name="interest" [(ngModel)]="calculatedInterest" required="true" readonly="true" />
+                </div>
+
+                <div class="form-group" *ngIf="!calculateInterestReadOnlyFlag">
+                    <label>Other Interest:</label>
+                    <input type="number" class="form-control" name="otherInterest" />
+                </div>
+
+            </div>
+
         </div>
 
         <hr />
 
-        <input type="submit" value="Open Fixed Deposit Account" class="btn btn-success" />
+        <input type="submit" value="Open Fixed Deposit Account" [disabled]="loading || openFixedDepositAccount.form.invalid" class="btn btn-success"
+        />
     </form>
 </div>
